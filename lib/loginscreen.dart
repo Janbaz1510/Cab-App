@@ -6,7 +6,7 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStateMixin {
+class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin {
   AnimationController animationController;
   Animation<double> _animationValue;
 
@@ -23,9 +23,16 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
   }
 
   @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -61,46 +68,46 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
             Positioned(
               top: 230,
               right: 20,
-                child: ScaleTransition(
+              child: ScaleTransition(
                 scale: _animationValue,
-              child: Container(
-                width: 105,
-                height: 105,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0x26FFFFFF),
+                child: Container(
+                  width: 105,
+                  height: 105,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0x26FFFFFF),
+                  ),
                 ),
               ),
-                ),
             ),
             Positioned(
               right: -50,
               top: -50,
-                child: ScaleTransition(
+              child: ScaleTransition(
                 scale: _animationValue,
-              child: Container(
-                height: 199,
-                width: 199,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0x26FFFFFF),
+                child: Container(
+                  height: 199,
+                  width: 199,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0x26FFFFFF),
+                  ),
                 ),
-              ),
               ),
             ),
             Positioned(
               bottom: 100,
               left: 45,
-                child: ScaleTransition(
+              child: ScaleTransition(
                 scale: _animationValue,
-              child: Container(
-                width: 105,
-                height: 105,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0x26FFFFFF),
+                child: Container(
+                  width: 105,
+                  height: 105,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0x26FFFFFF),
+                  ),
                 ),
-              ),
               ),
             ),
             Container(
@@ -176,34 +183,32 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                       ),
                     ),
                   ),
+                  Expanded(
+                    child: Container(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "By loggin in you will agree ",
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          "Terms & Conditions",
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
-              ),
-            ),
-            Positioned(
-              left: 30,
-              bottom: 20,
-              right: 20,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "By loggin in you will agree ",
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Text(
-                      "Terms & Conditions",
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ],
-                ),
               ),
             ),
           ],
