@@ -13,10 +13,10 @@ class _HomePageState extends State<HomePage> {
   Permission permission = Permission.location;
   LocationHelper locationHelper = LocationHelper();
   bool isLoadingPermission = true;
+  bool isGettingLocation = true;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     locationHelper.getPermissionStatus(permission).then((value) {
       if (value != PermissionStatus.granted) {
@@ -60,13 +60,17 @@ class _HomePageState extends State<HomePage> {
           clipBehavior: Clip.antiAliasWithSaveLayer,
           overflow: Overflow.visible,
           children: <Widget>[
-            Container(
-              height: size.height,
-              width: size.width,
-              decoration: BoxDecoration(
-                color: Colors.red,
-              ),
-            ),
+            isLoadingPermission
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Container(
+                    height: size.height,
+                    width: size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                    ),
+                  ),
             Container(
               height: size.height,
               width: size.width,
