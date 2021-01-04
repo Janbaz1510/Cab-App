@@ -1,5 +1,3 @@
-
-
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -8,29 +6,38 @@ import 'package:testapp/helper/location_helper.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
-
-  
-
 }
 
 class _HomePageState extends State<HomePage> {
-
   PermissionStatus permissionStatus = PermissionStatus.undetermined;
   Permission permission = Permission.location;
   LocationHelper locationHelper = LocationHelper();
+  bool isLoadingPermission = true;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    locationHelper.getPermissionStatus(permission).then((value) => setState(()=>permissionStatus = value));
-    
+    locationHelper.getPermissionStatus(permission).then((value) {
+      if (value != PermissionStatus.granted) {
+        locationHelper.requestPermission(permission).then((val) => setState(() => permissionStatus = val));
+      } else {
+        setState(() {
+          permissionStatus = value;
+        });
+      }
+      setState(() {
+        isLoadingPermission = false;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    print(permissionStatus);
+    if (!isLoadingPermission) {
+      print(permissionStatus);
+    }
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -47,8 +54,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      
-      
       body: Container(
         child: Stack(
           fit: StackFit.expand,
