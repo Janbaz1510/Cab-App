@@ -9,8 +9,7 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderStateMixin {
   AnimationController animationController;
   Animation<double> _animationValue;
-
-  
+  String genderValue;
 
   @override
   void initState() {
@@ -63,46 +62,46 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
             Positioned(
               bottom: 200,
               right: 30,
-                child: ScaleTransition(
+              child: ScaleTransition(
                 scale: _animationValue,
-              child: Container(
-                width: 105,
-                height: 105,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0x26FFFFFF),
+                child: Container(
+                  width: 105,
+                  height: 105,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0x26FFFFFF),
+                  ),
                 ),
               ),
-                ),
             ),
             Positioned(
               right: -50,
               top: -50,
-                child: ScaleTransition(
+              child: ScaleTransition(
                 scale: _animationValue,
-              child: Container(
-                height: 199,
-                width: 199,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0x26FFFFFF),
+                child: Container(
+                  height: 199,
+                  width: 199,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0x26FFFFFF),
+                  ),
                 ),
-              ),
               ),
             ),
             Positioned(
               top: 250,
               left: 20,
-                child: ScaleTransition(
+              child: ScaleTransition(
                 scale: _animationValue,
-              child: Container(
-                width: 105,
-                height: 105,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0x26FFFFFF),
+                child: Container(
+                  width: 105,
+                  height: 105,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0x26FFFFFF),
+                  ),
                 ),
-              ),
               ),
             ),
             Container(
@@ -211,23 +210,27 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                       ),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
-                          
-                        child: DropdownButton (
-                            icon: Icon(
-                               Icons.keyboard_arrow_down,
+                        child: DropdownButton(
+                          value: genderValue,
+                          isExpanded: true,
+                          icon: Icon(
+                            Icons.keyboard_arrow_down,
                             color: Colors.black,
-                            ),
-                          hint: Text('Select Gender', style: TextStyle(color: Colors.black),),
-                          
+                          ),
+                          hint: Text(
+                            'Select Gender',
+                            style: TextStyle(color: Colors.black),
+                          ),
                           items: <String>['Male', 'Female'].map((String value) {
-                            return new DropdownMenuItem<String>(
+                            return DropdownMenuItem<String>(
                               value: value,
-                              child: new Text(value),
-                              
+                              child: Text(value),
                             );
                           }).toList(),
                           onChanged: (_) {
-                            
+                            setState(() {
+                              genderValue = _;
+                            });
                           },
                         ),
                       ),
@@ -239,7 +242,8 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                     child: RaisedButton(
                       onPressed: () {
                         Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => HomePage()),
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
                         );
                       },
                       color: Colors.blueAccent,
@@ -260,7 +264,6 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                 ],
               ),
             ),
-            
           ],
         ),
       ),

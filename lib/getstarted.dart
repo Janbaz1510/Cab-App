@@ -23,6 +23,12 @@ class _GetStartedState extends State<GetStarted> with SingleTickerProviderStateM
   }
 
   @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -61,32 +67,32 @@ class _GetStartedState extends State<GetStarted> with SingleTickerProviderStateM
             Positioned(
               top: 230,
               left: 25,
-                child: ScaleTransition(
+              child: ScaleTransition(
                 scale: _animationValue,
-              child: Container(
-                width: 105,
-                height: 105,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0x26FFFFFF),
+                child: Container(
+                  width: 105,
+                  height: 105,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0x26FFFFFF),
+                  ),
                 ),
-              ),
               ),
             ),
             Positioned(
               right: -50,
               top: -50,
-                child: ScaleTransition(
+              child: ScaleTransition(
                 scale: _animationValue,
-              child: Container(
-                height: 199,
-                width: 199,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0x26FFFFFF),
+                child: Container(
+                  height: 199,
+                  width: 199,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0x26FFFFFF),
+                  ),
                 ),
               ),
-                ),
             ),
             Container(
               height: size.height,

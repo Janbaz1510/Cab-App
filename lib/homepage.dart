@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:testapp/helper/location_helper.dart';
 
@@ -14,6 +17,19 @@ class _HomePageState extends State<HomePage> {
   LocationHelper locationHelper = LocationHelper();
   bool isLoadingPermission = true;
   bool isGettingLocation = true;
+
+  Completer<GoogleMapController> _controller = Completer();
+
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
+  );
+
+  static final CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(37.43296265331129, -122.08832357078792),
+      tilt: 59.440717697143555,
+      zoom: 16.151926040649414);
 
   @override
   void initState() {
@@ -39,6 +55,7 @@ class _HomePageState extends State<HomePage> {
       print(permissionStatus);
     }
     return Scaffold(
+      drawer: Drawer(),
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -62,21 +79,20 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             isLoadingPermission
                 ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : Container(
-                    height: size.height,
-                    width: size.width,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.black,
                     ),
+                  )
+                : GoogleMap(
+                    mapType: MapType.normal,
+                    initialCameraPosition: _kGooglePlex,
+                    onMapCreated: (GoogleMapController controller) {
+                      _controller.complete(controller);
+                    },
                   ),
             Container(
               height: size.height,
               width: size.width,
-              decoration: BoxDecoration(
-                color: Color(0x26FFFFFF),
-              ),
               child: Padding(
                 padding: const EdgeInsets.only(left: 40, top: 80, right: 20, bottom: 40),
                 child: Column(
