@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:testapp/helper/location_helper.dart';
+import 'package:testapp/utils/constants.dart';
+import 'package:testapp/utils/my_drawer.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -59,256 +61,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    if (!isLoadingPermission) {
-      print(permissionStatus);
-    }
+
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 20),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/ss.png',
-                      height: 64,
-                      width: 64,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "Cap App",
-                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30, bottom: 5, left: 20, right: 20),
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                ),
-                height: 40,
-                color: Color(0xff5e72e4),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Booking",
-                        style: TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 0, bottom: 5, left: 20, right: 20),
-              child: Container(
-                height: 40,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.black,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "History",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 0, bottom: 5, left: 20, right: 20),
-              child: Container(
-                height: 40,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.black,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Profile",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 0, bottom: 5, left: 20, right: 20),
-              child: Container(
-                height: 40,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.black,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Address",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 0, bottom: 10, left: 20, right: 20),
-              child: Container(
-                height: 40,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.black,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Wallet",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 10,
-                bottom: 10,
-                left: 20,
-                right: 20,
-              ),
-              child: Container(
-                color: Colors.grey,
-                height: 3,
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Text(
-                "DOCUMENTATION",
-                style: TextStyle(color: Colors.black, fontSize: 14),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 25, bottom: 5, left: 20, right: 20),
-              child: Container(
-                height: 40,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.black,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Pravicy Policy",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 0, bottom: 5, left: 20, right: 20),
-              child: Container(
-                height: 40,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.black,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Share",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 0, bottom: 5, left: 20, right: 20),
-              child: Container(
-                height: 40,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.red,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Logout",
-                        style: TextStyle(color: Colors.red, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      drawer: MyDrawer(),
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -323,62 +78,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-      ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   child: Icon(Icons.add),
-      //   backgroundColor: Colors.red,
-      // ),
-      //floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(
-          bottom: 15,
-          left: 20,
-          right: 40,
-        ),
-        child: BubbleBottomBar(
-          elevation: 4,
-          opacity: 0.2,
-          backgroundColor: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          currentIndex: currentIndex,
-          hasInk: true,
-          inkColor: Colors.black12,
-          hasNotch: true,
-          //fabLocation: BubbleBottomBarFabLocation.end,
-          onTap: changePage,
-          iconSize: 10,
-
-          items: <BubbleBottomBarItem>[
-            BubbleBottomBarItem(
-                backgroundColor: Colors.blue,
-                icon: Icon(Icons.dashboard, color: Colors.black),
-                activeIcon: Icon(Icons.dashboard, color: Colors.blue),
-                title: Text("Home")),
-            BubbleBottomBarItem(
-                backgroundColor: Colors.blue,
-                icon: Icon(Icons.dashboard, color: Colors.black),
-                activeIcon: Icon(Icons.dashboard, color: Colors.blue),
-                title: Text("Home")),
-            BubbleBottomBarItem(
-                backgroundColor: Colors.blue,
-                icon: Icon(Icons.dashboard, color: Colors.black),
-                activeIcon: Icon(Icons.dashboard, color: Colors.blue),
-                title: Text("Home")),
-            BubbleBottomBarItem(
-                backgroundColor: Colors.blue,
-                icon: Icon(Icons.dashboard, color: Colors.black),
-                activeIcon: Icon(Icons.dashboard, color: Colors.blue),
-                title: Text("Home")),
-          ],
+        title: Text(
+          'Cab App',
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: Container(
         child: Stack(
-          fit: StackFit.expand,
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          overflow: Overflow.visible,
-          children: <Widget>[
+          children: [
             isLoadingPermission
                 ? Center(
                     child: CircularProgressIndicator(
@@ -392,20 +99,21 @@ class _HomePageState extends State<HomePage> {
                       _controller.complete(controller);
                     },
                   ),
-            Container(
-              height: size.height,
-              width: size.width,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 40, top: 80, right: 20, bottom: 40),
+            Positioned(
+              top: 50,
+              right: 15,
+              left: 30,
+              child: Container(
+                height: 100,
+                width: size.width,
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                    
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
-                        color: Color(0x80FFFFFF),
+                        color: Color(0xccFFFFFF),
                         //borderRadius: BorderRadius.circular(16),
-                       
                       ),
                       child: TextFormField(
                         keyboardType: TextInputType.text,
@@ -431,9 +139,10 @@ class _HomePageState extends State<HomePage> {
                       height: 2,
                     ),
                     Container(
+                      height: 50,
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
-                        color: Color(0x80FFFFFF),
+                        color: Color(0xccFFFFFF),
                       ),
                       child: TextFormField(
                         keyboardType: TextInputType.text,
@@ -459,6 +168,37 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            Positioned(
+              bottom: 10,
+              left: 10,
+              right: 30,
+              child: Container(
+                width: size.width,
+                child: BubbleBottomBar(
+                  elevation: 8,
+                  opacity: 0.2,
+                  backgroundColor: Colors.white,
+                  borderRadius: BorderRadius.circular(25),
+                  currentIndex: currentIndex,
+                  hasInk: true,
+                  inkColor: Colors.black12,
+                  hasNotch: false,
+                  onTap: changePage,
+                  iconSize: 25,
+                  items: bottomMenus.map((e) {
+                    return BubbleBottomBarItem(
+                      backgroundColor: Colors.blue,
+                      icon: Icon(e['icon'], color: Colors.black),
+                      activeIcon: Icon(e['icon'], color: Colors.blue),
+                      title: Text(
+                        e['title'],
+                        textAlign: TextAlign.left,
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            )
           ],
         ),
       ),
