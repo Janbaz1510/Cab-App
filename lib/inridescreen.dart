@@ -69,52 +69,180 @@ class _InRideScreenState extends State<InRideScreen> {
                       _controller.complete(controller);
                     },
                   ),
-            Container(
-              height: size.height,
-              width: size.width,
-              color: Colors.transparent,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 40, top: 60, right: 20, bottom: 40),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 50,
-                      width: size.width,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Color(0x80FFFFFF),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(0.0, 1.0), //(x,y)
-                            blurRadius: 6.0,
+            Positioned(
+              top: 50,
+              left: 60,
+              right: 60,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                color: Color(0xff3c2593),
+                elevation: 6.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "OTP to start ride",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white,
                           ),
-                        ],
-                        //borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [],
                         ),
-                      ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          "1234",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
-                    
-                  ],
+                  ),
                 ),
               ),
             ),
             Positioned(
               bottom: 100,
               left: 20,
-              right: 40,
+              right: 30,
               child: Card(
                 color: Colors.white,
                 elevation: 6.0,
-                child: Container(
-                 height: 40,
-                 width: 100,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Image.asset('assets/images/ss.png', height: 60, width: 60),
+                            Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Simmons",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.yellow,
+                                        size: 20,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        "4.5",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      Text(
+                                        "OTP : ",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      Text(
+                                        "1234",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 30,
+                              width: 70,
+                              child: RaisedButton(
+                                color: Color(0xff3c2593),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.phone,
+                                      color: Colors.white,
+                                      size: 15,
+                                    ),
+                                    SizedBox(
+                                      width: 7,
+                                    ),
+                                    Text(
+                                      "Call",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                onPressed: () {},
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 35,
+                        width: size.width,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          onPressed: () {},
+                          color: Color(0xff2DCE80),
+                          splashColor: Colors.grey,
+                          child: Text(
+                            "Pay Now",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -126,10 +254,9 @@ class _InRideScreenState extends State<InRideScreen> {
                 borderRadius: BorderRadius.circular(40),
                 child: Container(
                   width: size.width,
-                  color: Color(0x80FFFFFF),
+                  color: Color(0xFFFFFFFF),
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
-                    //color: Color(0x80000000),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey,
@@ -137,7 +264,6 @@ class _InRideScreenState extends State<InRideScreen> {
                         blurRadius: 6.0,
                       ),
                     ],
-
                     border: Border.all(
                       color: Colors.grey,
                     ),
@@ -206,17 +332,17 @@ class _InRideScreenState extends State<InRideScreen> {
                         height: 41,
                         width: 122,
                         child: RaisedButton(
-                          color: Color(0xff3c2593),
+                          color: Color(0xffD80C0C),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(41),
-                            //side: BorderSide(color: Colors.blue),
                           ),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Icon(Icons.add, color: Colors.white),
+                              Icon(Icons.cancel_outlined, color: Colors.white),
                               SizedBox(
-                                width: 5,
+                                width: 15,
                               ),
                               Text(
                                 "Cancel",
