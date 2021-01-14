@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   LocationHelper locationHelper = LocationHelper();
   bool isLoadingPermission = true;
   bool isGettingLocation = true;
+  int currentIndex;
 
   Completer<GoogleMapController> _controller = Completer();
 
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    currentIndex = 0;
     locationHelper.getPermissionStatus(permission).then((value) {
       if (value != PermissionStatus.granted) {
         locationHelper.requestPermission(permission).then((val) => setState(() => permissionStatus = val));
@@ -48,6 +50,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  changePage(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -55,7 +63,252 @@ class _HomePageState extends State<HomePage> {
       print(permissionStatus);
     }
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 20),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/images/ss.png',
+                      height: 64,
+                      width: 64,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "Cap App",
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 30, bottom: 5, left: 20, right: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                ),
+                height: 40,
+                color: Color(0xff5e72e4),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Booking",
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 0, bottom: 5, left: 20, right: 20),
+              child: Container(
+                height: 40,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "History",
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 0, bottom: 5, left: 20, right: 20),
+              child: Container(
+                height: 40,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Profile",
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 0, bottom: 5, left: 20, right: 20),
+              child: Container(
+                height: 40,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Address",
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 0, bottom: 10, left: 20, right: 20),
+              child: Container(
+                height: 40,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Wallet",
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 10,
+                bottom: 10,
+                left: 20,
+                right: 20,
+              ),
+              child: Container(
+                color: Colors.grey,
+                height: 3,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                "DOCUMENTATION",
+                style: TextStyle(color: Colors.black, fontSize: 14),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 25, bottom: 5, left: 20, right: 20),
+              child: Container(
+                height: 40,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Pravicy Policy",
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 0, bottom: 5, left: 20, right: 20),
+              child: Container(
+                height: 40,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Share",
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 0, bottom: 5, left: 20, right: 20),
+              child: Container(
+                height: 40,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Colors.red,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Logout",
+                        style: TextStyle(color: Colors.red, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -69,6 +322,55 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+        ),
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   child: Icon(Icons.add),
+      //   backgroundColor: Colors.red,
+      // ),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(
+          bottom: 15,
+          left: 20,
+          right: 40,
+        ),
+        child: BubbleBottomBar(
+          elevation: 4,
+          opacity: 0.2,
+          backgroundColor: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          currentIndex: currentIndex,
+          hasInk: true,
+          inkColor: Colors.black12,
+          hasNotch: true,
+          //fabLocation: BubbleBottomBarFabLocation.end,
+          onTap: changePage,
+          iconSize: 10,
+
+          items: <BubbleBottomBarItem>[
+            BubbleBottomBarItem(
+                backgroundColor: Colors.blue,
+                icon: Icon(Icons.dashboard, color: Colors.black),
+                activeIcon: Icon(Icons.dashboard, color: Colors.blue),
+                title: Text("Home")),
+            BubbleBottomBarItem(
+                backgroundColor: Colors.blue,
+                icon: Icon(Icons.dashboard, color: Colors.black),
+                activeIcon: Icon(Icons.dashboard, color: Colors.blue),
+                title: Text("Home")),
+            BubbleBottomBarItem(
+                backgroundColor: Colors.blue,
+                icon: Icon(Icons.dashboard, color: Colors.black),
+                activeIcon: Icon(Icons.dashboard, color: Colors.blue),
+                title: Text("Home")),
+            BubbleBottomBarItem(
+                backgroundColor: Colors.blue,
+                icon: Icon(Icons.dashboard, color: Colors.black),
+                activeIcon: Icon(Icons.dashboard, color: Colors.blue),
+                title: Text("Home")),
+          ],
         ),
       ),
       body: Container(
@@ -98,9 +400,12 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     Container(
+                    
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
                         color: Color(0x80FFFFFF),
+                        //borderRadius: BorderRadius.circular(16),
+                       
                       ),
                       child: TextFormField(
                         keyboardType: TextInputType.text,
