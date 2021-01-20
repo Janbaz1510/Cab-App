@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/pages/otpscreen.dart';
+import 'package:testapp/auth/login/login_interface.dart';
+import 'package:testapp/utils/constants.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginUI extends StatefulWidget {
+  final LoginInterface interface;
+
+  LoginUI({this.interface});
+
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginUIState createState() => _LoginUIState();
 }
 
-class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin {
+class _LoginUIState extends State<LoginUI> with TickerProviderStateMixin {
   AnimationController animationController;
   Animation<double> _animationValue;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     animationController = AnimationController(
       vsync: this,
@@ -34,17 +38,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: <Color>[
-              Color(0xff281483),
-              Color(0xff8F6ED5),
-              Color(0xffD782D9),
-            ],
-          ),
-        ),
+        decoration: commonBackgroundDecoration,
         child: Stack(
           fit: StackFit.expand,
           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -164,10 +158,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
                     padding: const EdgeInsets.only(left: 30, right: 20),
                     child: RaisedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => OTPScreen()),
-                        );
+                        widget.interface.loginWithMobile("hi");
                       },
                       color: Colors.blueAccent,
                       splashColor: Colors.grey,

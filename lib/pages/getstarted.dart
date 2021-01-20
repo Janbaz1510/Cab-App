@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/pages/loginscreen.dart';
+import 'package:testapp/routes/routes.dart';
 import 'package:testapp/utils/constants.dart';
 
 class GetStarted extends StatefulWidget {
@@ -124,10 +124,7 @@ class _GetStartedState extends State<GetStarted> with SingleTickerProviderStateM
                 width: size.width,
                 child: RaisedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
-                    );
+                    Navigator.pushReplacementNamed(context, loginScreen);
                   },
                   color: Colors.white,
                   splashColor: Colors.grey,

@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:testapp/pages/getstarted.dart';
+import 'package:testapp/routes/routes.dart';
+import 'package:testapp/utils/constants.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -15,10 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
     handleTimer();
   }
 
-  handleTimer() async {
+  handleTimer() {
     Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (c) => GetStarted()));
+      Navigator.pushReplacementNamed(context, gettingStarted);
     });
   }
 
@@ -27,17 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: <Color>[
-              Color(0xff281483),
-              Color(0xff8F6ED5),
-              Color(0xffD782D9),
-            ],
-          ),
-        ),
+        decoration: commonBackgroundDecoration,
         child: Center(
           child: Container(
             child: Center(
