@@ -8,6 +8,18 @@ final List<Map<String, dynamic>> bottomMenus = [
   {'title': 'Car', 'icon': Icons.car_rental},
 ];
 
+final BoxDecoration commonBackgroundDecoration = BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: <Color>[
+              Color(0xff281483),
+              Color(0xff8F6ED5),
+              Color(0xffD782D9),
+            ],
+          ),
+        );
+
 Widget notificationHistoryExample({String imageAssert, String name, String subname}) {
   return Slidable(
     actionPane: SlidableScrollActionPane(),

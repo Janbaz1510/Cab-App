@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/signupscreen.dart';
+import 'package:testapp/pages/signupscreen.dart';
 
 
 class OTPScreen extends StatefulWidget {

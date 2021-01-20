@@ -1,7 +1,7 @@
 //import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:testapp/notification_page.dart';
+import 'package:testapp/pages/notification_page.dart';
 import 'package:testapp/utils/constants.dart';
 //import 'package:testapp/utils/notification_page.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/loginscreen.dart';
+import 'package:testapp/pages/loginscreen.dart';
+import 'package:testapp/utils/constants.dart';
 
 class GetStarted extends StatefulWidget {
   @override
@@ -34,17 +35,7 @@ class _GetStartedState extends State<GetStarted> with SingleTickerProviderStateM
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: <Color>[
-              Color(0xff281483),
-              Color(0xff8F6ED5),
-              Color(0xffD782D9),
-            ],
-          ),
-        ),
+        decoration: commonBackgroundDecoration,
         child: Stack(
           fit: StackFit.expand,
           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -130,7 +121,6 @@ class _GetStartedState extends State<GetStarted> with SingleTickerProviderStateM
               bottom: 40,
               right: 20,
               child: Container(
-                height: 40,
                 width: size.width,
                 child: RaisedButton(
                   onPressed: () {
@@ -142,14 +132,14 @@ class _GetStartedState extends State<GetStarted> with SingleTickerProviderStateM
                   color: Colors.white,
                   splashColor: Colors.grey,
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
                           "Login/Signup",
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 14,
                             fontWeight: FontWeight.w700,
                             color: Colors.black,
                           ),

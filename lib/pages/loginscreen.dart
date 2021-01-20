@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/homepage.dart';
+import 'package:testapp/pages/otpscreen.dart';
 
-class SignupScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  _SignupScreenState createState() => _SignupScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderStateMixin {
+class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin {
   AnimationController animationController;
   Animation<double> _animationValue;
-  String genderValue;
 
   @override
   void initState() {
@@ -21,6 +20,12 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
     );
     _animationValue = Tween<double>(begin: 1.1, end: 0.9).animate(animationController);
     animationController.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -46,8 +51,8 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
           overflow: Overflow.visible,
           children: <Widget>[
             Positioned(
-              bottom: 100,
-              left: -70,
+              top: 15,
+              left: -60,
               child: ScaleTransition(
                 scale: _animationValue,
                 child: Container(
@@ -61,8 +66,8 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
               ),
             ),
             Positioned(
-              bottom: 200,
-              right: 30,
+              top: 230,
+              right: 20,
               child: ScaleTransition(
                 scale: _animationValue,
                 child: Container(
@@ -91,8 +96,8 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
               ),
             ),
             Positioned(
-              top: 250,
-              left: 20,
+              bottom: 100,
+              left: 45,
               child: ScaleTransition(
                 scale: _animationValue,
                 child: Container(
@@ -114,39 +119,19 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                 children: [
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 0, top: 40, right: 0, bottom: 0),
-                       child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0x56FFFFFF),
-                        ),
-                        child: Icon(
-                          Icons.cancel_outlined,
-                          color: Colors.white,
-                          size: 25,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 60),
-                      child: Image.asset('assets/images/ss.png', height: 90, width: 90),
+                      padding: const EdgeInsets.only(top: 130),
+                      child: Image.asset('assets/images/ss.png', height: 100, width: 100),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 0, top: 30, right: 0, bottom: 30),
-                    child: Center(
-                      child: Text(
-                        "Registration",
-                        style: TextStyle(color: Colors.white, fontSize: 35),
-                      ),
+                    padding: const EdgeInsets.only(left: 35, top: 30, right: 0, bottom: 30),
+                    child: Text(
+                      "Login",
+                      style: TextStyle(color: Colors.white, fontSize: 45),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 0),
+                    padding: const EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 30),
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
@@ -156,12 +141,12 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
-                            Icons.person,
+                            Icons.phone_android,
                             color: Colors.black,
                           ),
                           border:
                               OutlineInputBorder(borderRadius: BorderRadius.circular(0), borderSide: BorderSide.none),
-                          hintText: "Name ",
+                          hintText: "Mobile Number",
                           hintStyle: TextStyle(color: Colors.black),
                           contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                           isDense: true,
@@ -169,92 +154,27 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                         style: TextStyle(
                           fontSize: 14.0,
                           color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Color(0x80FFFFFF),
-                      ),
-                      child: TextFormField(
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.mail,
-                            color: Colors.black,
-                          ),
-                          border:
-                              OutlineInputBorder(borderRadius: BorderRadius.circular(0), borderSide: BorderSide.none),
-                          hintText: "Email ",
-                          hintStyle: TextStyle(color: Colors.black),
-                          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                          isDense: true,
-                        ),
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 50),
-                    child: Container(
-                        height: 40,
-                      width: size.width,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Color(0x80FFFFFF),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: DropdownButton(
-                          value: genderValue,
-                          isExpanded: true,
-                          icon: Icon(
-                            Icons.keyboard_arrow_down,
-                            color: Colors.black,
-                          ),
-                          hint: Text(
-                            'Select Gender',
-                            style: TextStyle(color: Colors.black, fontSize: 14, ),
-                          ),
-                          items: <String>['Male', 'Female'].map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (_) {
-                            setState(() {
-                              genderValue = _;
-                            });
-                          },
                         ),
                       ),
                     ),
                   ),
                   Container(
-                    height: 40,
+                      height: 40,
                     width: size.width,
                     padding: const EdgeInsets.only(left: 30, right: 20),
                     child: RaisedButton(
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
+                          MaterialPageRoute(builder: (context) => OTPScreen()),
                         );
                       },
                       color: Colors.blueAccent,
                       splashColor: Colors.grey,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                         child: Text(
-                          "Continue",
+                          "Generate OTP",
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
@@ -262,6 +182,31 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                           ),
                         ),
                       ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "By loggin in you will agree ",
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          "Terms & Conditions",
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/bookingscreen.dart';
-import 'package:testapp/ride_history.dart';
-import 'package:testapp/profile_screen.dart';
+import 'package:testapp/pages/bookingscreen.dart';
+import 'package:testapp/pages/ride_history.dart';
+import 'package:testapp/pages/profile_screen.dart';
 
 class MyDrawer extends StatefulWidget {
   @override

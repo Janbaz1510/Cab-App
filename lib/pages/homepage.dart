@@ -7,7 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:testapp/helper/location_helper.dart';
 import 'package:testapp/utils/constants.dart';
 import 'package:testapp/utils/my_drawer.dart';
-import 'package:testapp/notification_page.dart';
+import 'package:testapp/pages/notification_page.dart';
 
 class HomePage extends StatefulWidget {
   @override

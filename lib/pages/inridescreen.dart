@@ -2,15 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:testapp/inridescreen.dart';
-import 'package:testapp/notification_page.dart';
+import 'package:testapp/pages/notification_page.dart';
+import 'package:testapp/pages/ride_complete_screen.dart';
 
-class BookingScreen extends StatefulWidget {
+class InRideScreen extends StatefulWidget {
   @override
-  _BookingScreenState createState() => _BookingScreenState();
+  _InRideScreenState createState() => _InRideScreenState();
 }
 
-class _BookingScreenState extends State<BookingScreen> {
+class _InRideScreenState extends State<InRideScreen> {
   bool isLoadingPermission = true;
 
   Completer<GoogleMapController> _controller = Completer();
@@ -32,13 +32,10 @@ class _BookingScreenState extends State<BookingScreen> {
     return Scaffold(
        resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text(
-          "Booking",
-          style: TextStyle(
+        title: Text("InRide",  style: TextStyle(
             fontSize: 14,
             color: Colors.white,
-          ),
-        ),
+          ),),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -52,7 +49,7 @@ class _BookingScreenState extends State<BookingScreen> {
             ),
           ),
         ),
-        actions: <Widget>[
+       actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
@@ -86,54 +83,42 @@ class _BookingScreenState extends State<BookingScreen> {
                     },
                   ),
             Positioned(
-              top: 40,
-              left: 30,
-              right: 20,
+              top: 50,
+              left: 60,
+              right: 60,
               child: Card(
-                color: Color(0xFFFFFFFF),
-                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                color: Color(0xff3c2593),
+                elevation: 6.0,
                 child: Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Column(
-                    children: <Widget>[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
-                            children: [
-                              Icon(Icons.add),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "Buxipur, Gorakhpur",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
+                  padding: const EdgeInsets.all(10),
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "OTP to start ride",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white,
                           ),
-                          Icon(Icons.add),
-                          Row(
-                            children: [
-                              Icon(Icons.add),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "Rustampur, Gorakhpur",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          "1234",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -282,10 +267,9 @@ class _BookingScreenState extends State<BookingScreen> {
                 borderRadius: BorderRadius.circular(40),
                 child: Container(
                   width: size.width,
-                  color: Color(0xffFFFFFF),
+                  color: Color(0xFFFFFFFF),
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
-                    color: Color(0xffFFFFFF),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey,
@@ -299,13 +283,13 @@ class _BookingScreenState extends State<BookingScreen> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
+                    children: [
                       Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: Column(
-                          children: <Widget>[
+                          children: [
                             Row(
-                              children: <Widget>[
+                              children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 20),
                                   child: Text(
@@ -330,7 +314,7 @@ class _BookingScreenState extends State<BookingScreen> {
                               ],
                             ),
                             Row(
-                              children: <Widget>[
+                              children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5),
                                   child: Text(
@@ -361,21 +345,20 @@ class _BookingScreenState extends State<BookingScreen> {
                         height: 41,
                         width: 122,
                         child: RaisedButton(
-                          color: Color(0xff3c2593),
+                          color: Color(0xffD80C0C),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(41),
-                            //side: BorderSide(color: Colors.blue),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Icon(Icons.add, color: Colors.white),
+                              Icon(Icons.cancel_outlined, color: Colors.white),
                               SizedBox(
-                                width: 5,
+                                width: 15,
                               ),
                               Text(
-                                "Ride Now",
+                                "Cancel",
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: Colors.white,
@@ -384,10 +367,10 @@ class _BookingScreenState extends State<BookingScreen> {
                             ],
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => InRideScreen()),
-                            );
+                             Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RideComplete()),
+                  );
                           },
                         ),
                       ),
