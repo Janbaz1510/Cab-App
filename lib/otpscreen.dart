@@ -27,6 +27,7 @@ class _OTPScreenState extends State<OTPScreen> with SingleTickerProviderStateMix
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -123,24 +124,24 @@ class _OTPScreenState extends State<OTPScreen> with SingleTickerProviderStateMix
                         child: Icon(
                           Icons.cancel_outlined,
                           color: Colors.white,
-                          size: 30,
+                          size: 25,
                         ),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 0, top: 130, right: 0, bottom: 10),
+                    padding: const EdgeInsets.only(left: 0, top: 110, right: 0, bottom: 10),
                     child: Text(
                       "Verification",
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 45),
+                      style: TextStyle(color: Colors.white, fontSize: 35),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 40, top: 35, right: 40, bottom: 35),
+                    padding: const EdgeInsets.only(left: 40, top: 30, right: 40, bottom: 35),
                     child: Text(
                       "Enter the 6 digit OTP sent to your mobile number",
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                   ),
                   Padding(
@@ -173,8 +174,9 @@ class _OTPScreenState extends State<OTPScreen> with SingleTickerProviderStateMix
                     ),
                   ),
                   Container(
+                      height:40,
                     width: size.width,
-                    padding: const EdgeInsets.only(left: 30, right: 20, top: 30),
+                    padding: const EdgeInsets.only(left: 30, right: 20,),
                     child: RaisedButton(
                       onPressed: () {
                         Navigator.push(
@@ -185,7 +187,7 @@ class _OTPScreenState extends State<OTPScreen> with SingleTickerProviderStateMix
                       color: Colors.blueAccent,
                       splashColor: Colors.grey,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                         child: Text(
                           "Verify",
                           style: TextStyle(
@@ -202,10 +204,10 @@ class _OTPScreenState extends State<OTPScreen> with SingleTickerProviderStateMix
             ),
             Positioned(
               left: 30,
-              bottom: 20,
+              bottom: 30,
               right: 20,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Center(
                   child: Text(
                     "Resend OTP?",

@@ -124,14 +124,14 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 35, top: 50, right: 0, bottom: 30),
+                    padding: const EdgeInsets.only(left: 35, top: 30, right: 0, bottom: 30),
                     child: Text(
                       "Login",
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 45),
+                      style: TextStyle(color: Colors.white, fontSize: 45),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 40),
+                    padding: const EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 30),
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
@@ -159,6 +159,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
                     ),
                   ),
                   Container(
+                      height: 40,
                     width: size.width,
                     padding: const EdgeInsets.only(left: 30, right: 20),
                     child: RaisedButton(
@@ -171,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
                       color: Colors.blueAccent,
                       splashColor: Colors.grey,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                         child: Text(
                           "Generate OTP",
                           style: TextStyle(
@@ -187,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
                     child: Container(),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 30),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[

@@ -32,6 +32,7 @@ class _GetStartedState extends State<GetStarted> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -126,32 +127,37 @@ class _GetStartedState extends State<GetStarted> with SingleTickerProviderStateM
             ),
             Positioned(
               left: 30,
-              bottom: 20,
+              bottom: 40,
               right: 20,
-              child: RaisedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                  );
-                },
-                color: Colors.white,
-                splashColor: Colors.grey,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        "Login/Signup",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black,
+              child: Container(
+                height: 40,
+                width: size.width,
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
+                  },
+                  color: Colors.white,
+                  splashColor: Colors.grey,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          "Login/Signup",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      Icon(Icons.arrow_right, color: Colors.black),
-                    ],
+                        Icon(Icons.arrow_forward, 
+                        color: Colors.black),
+                      ],
+                    ),
                   ),
                 ),
               ),

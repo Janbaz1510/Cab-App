@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:testapp/notification_page.dart';
+import 'package:testapp/ride_complete_screen.dart';
 
 class InRideScreen extends StatefulWidget {
   @override
@@ -28,8 +30,12 @@ class _InRideScreenState extends State<InRideScreen> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text("InRide"),
+        title: Text("InRide",  style: TextStyle(
+            fontSize: 14,
+            color: Colors.white,
+          ),),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -43,10 +49,17 @@ class _InRideScreenState extends State<InRideScreen> {
             ),
           ),
         ),
-        actions: <Widget>[
+       actions: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: IconButton(icon: Icon(Icons.settings, color: Colors.white), onPressed: () {}),
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+                icon: Icon(Icons.notifications, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NotificationPage()),
+                  );
+                }),
           ),
         ],
       ),
@@ -116,9 +129,9 @@ class _InRideScreenState extends State<InRideScreen> {
               right: 30,
               child: Card(
                 color: Colors.white,
-                elevation: 6.0,
+                elevation: 4.0,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(10),
@@ -226,7 +239,7 @@ class _InRideScreenState extends State<InRideScreen> {
                         width: size.width,
                         child: RaisedButton(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(4),
                           ),
                           onPressed: () {},
                           color: Color(0xff2DCE80),
@@ -284,7 +297,7 @@ class _InRideScreenState extends State<InRideScreen> {
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                                      fontSize: 13,
                                       color: Color(0xff3c2593),
                                     ),
                                   ),
@@ -294,7 +307,7 @@ class _InRideScreenState extends State<InRideScreen> {
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: 13,
                                     color: Color(0xff3c2593),
                                   ),
                                 ),
@@ -309,7 +322,7 @@ class _InRideScreenState extends State<InRideScreen> {
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                                      fontSize: 13,
                                       color: Color(0xff3c2593),
                                     ),
                                   ),
@@ -319,7 +332,7 @@ class _InRideScreenState extends State<InRideScreen> {
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: 13,
                                     color: Color(0xff3c2593),
                                   ),
                                 ),
@@ -353,7 +366,12 @@ class _InRideScreenState extends State<InRideScreen> {
                               ),
                             ],
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                             Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RideComplete()),
+                  );
+                          },
                         ),
                       ),
                     ],

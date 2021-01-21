@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:testapp/inridescreen.dart';
+import 'package:testapp/notification_page.dart';
 
 class BookingScreen extends StatefulWidget {
   @override
@@ -28,8 +30,15 @@ class _BookingScreenState extends State<BookingScreen> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-          title: Text("Booking"),
+        title: Text(
+          "Booking",
+          style: TextStyle(
+            fontSize: 14,
+            color: Colors.white,
+          ),
+        ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -42,12 +51,18 @@ class _BookingScreenState extends State<BookingScreen> {
               ],
             ),
           ),
-          
         ),
         actions: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: IconButton(icon: Icon(Icons.settings, color: Colors.white), onPressed: () {}),
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+                icon: Icon(Icons.notifications, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NotificationPage()),
+                  );
+                }),
           ),
         ],
       ),
@@ -70,195 +85,191 @@ class _BookingScreenState extends State<BookingScreen> {
                       _controller.complete(controller);
                     },
                   ),
-            Container(
-              height: size.height,
-              width: size.width,
-              color: Colors.transparent,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 40, top: 60, right: 20, bottom: 40),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      width: size.width,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Color(0x80FFFFFF),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(0.0, 1.0), //(x,y)
-                            blurRadius: 6.0,
+            Positioned(
+              top: 40,
+              left: 30,
+              right: 20,
+              child: Card(
+                color: Color(0xFFFFFFFF),
+                elevation: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Column(
+                    children: <Widget>[
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            children: [
+                              Icon(Icons.add),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "Buxipur, Gorakhpur",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Icon(Icons.add),
+                          Row(
+                            children: [
+                              Icon(Icons.add),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "Rustampur, Gorakhpur",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
-                        //borderRadius: BorderRadius.circular(16),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.add),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  "Buxipur, Gorakhpur",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Icon(Icons.add),
-                            Row(
-                              children: [
-                                Icon(Icons.add),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  "Rustampur, Gorakhpur",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
             Positioned(
               bottom: 100,
               left: 20,
-              right: 40,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  width: size.width,
-                  color: Color(0x80FFFFFF),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    //color: Color(0x80000000),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0.0, 1.0), //(x,y)
-                        blurRadius: 6.0,
-                      ),
-                    ],
-                    //borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 0, right: 20, top: 10, bottom: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
+              right: 30,
+              child: Card(
+                color: Colors.white,
+                elevation: 4.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Container(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.car_rental, color: Color(0xff3c2593)),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      "Mini Ride",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                        color: Color(0xff3c2593),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 30),
-                                  child: Text(
-                                    "4 Person Allowed",
-                                    textAlign: TextAlign.left,
+                          children: <Widget>[
+                            Image.asset('assets/images/ss.png', height: 60, width: 60),
+                            Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Simmons",
                                     style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                      color: Color(0xff3c2593),
+                                      fontSize: 15,
+                                      color: Colors.black,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.yellow,
+                                        size: 20,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        "4.5",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      Text(
+                                        "OTP : ",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      Text(
+                                        "1234",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                             Container(
-                              height: 29,
-                              width: 73,
+                              height: 30,
+                              width: 70,
                               child: RaisedButton(
                                 color: Color(0xff3c2593),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18.0),
-                                  //side: BorderSide(color: Colors.blue),
                                 ),
-                                child: Text(
-                                  "View Bill",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.white,
-                                  ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.phone,
+                                      color: Colors.white,
+                                      size: 15,
+                                    ),
+                                    SizedBox(
+                                      width: 7,
+                                    ),
+                                    Text(
+                                      "Call",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 onPressed: () {},
                               ),
                             ),
-                            // Container(height: 50, width: 80, color: Colors.black),
                           ],
                         ),
-                        SizedBox(
-                          height: 8,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 35,
+                        width: size.width,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          onPressed: () {},
+                          color: Color(0xff2DCE80),
+                          splashColor: Colors.grey,
+                          child: Text(
+                            "Pay Now",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 30),
-                              child: Text(
-                                "Fare",
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                  color: Color(0xff3c2593),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "251.00",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                                color: Color(0xff3c2593),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -271,10 +282,10 @@ class _BookingScreenState extends State<BookingScreen> {
                 borderRadius: BorderRadius.circular(40),
                 child: Container(
                   width: size.width,
-                  color: Color(0x80FFFFFF),
+                  color: Color(0xffFFFFFF),
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
-                    //color: Color(0x80000000),
+                    color: Color(0xffFFFFFF),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey,
@@ -282,20 +293,19 @@ class _BookingScreenState extends State<BookingScreen> {
                         blurRadius: 6.0,
                       ),
                     ],
-
                     border: Border.all(
                       color: Colors.grey,
                     ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: Column(
-                          children: [
+                          children: <Widget>[
                             Row(
-                              children: [
+                              children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.only(left: 20),
                                   child: Text(
@@ -303,7 +313,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                                      fontSize: 13,
                                       color: Color(0xff3c2593),
                                     ),
                                   ),
@@ -313,14 +323,14 @@ class _BookingScreenState extends State<BookingScreen> {
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: 13,
                                     color: Color(0xff3c2593),
                                   ),
                                 ),
                               ],
                             ),
                             Row(
-                              children: [
+                              children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5),
                                   child: Text(
@@ -328,7 +338,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                                      fontSize: 13,
                                       color: Color(0xff3c2593),
                                     ),
                                   ),
@@ -338,7 +348,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: 13,
                                     color: Color(0xff3c2593),
                                   ),
                                 ),
@@ -357,6 +367,7 @@ class _BookingScreenState extends State<BookingScreen> {
                             //side: BorderSide(color: Colors.blue),
                           ),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Icon(Icons.add, color: Colors.white),
@@ -370,11 +381,14 @@ class _BookingScreenState extends State<BookingScreen> {
                                   color: Colors.white,
                                 ),
                               ),
-                              
                             ],
                           ),
-                          onPressed: () {},
-                          
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => InRideScreen()),
+                            );
+                          },
                         ),
                       ),
                     ],

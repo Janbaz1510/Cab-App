@@ -7,6 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:testapp/helper/location_helper.dart';
 import 'package:testapp/utils/constants.dart';
 import 'package:testapp/utils/my_drawer.dart';
+import 'package:testapp/notification_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -55,6 +56,7 @@ class _HomePageState extends State<HomePage> {
   changePage(int index) {
     setState(() {
       currentIndex = index;
+      
     });
   }
 
@@ -63,7 +65,10 @@ class _HomePageState extends State<HomePage> {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      drawer: MyDrawer(),
+      resizeToAvoidBottomInset: false,
+      drawer: Drawer(
+        child: MyDrawer(),
+      ),
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -78,10 +83,19 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        title: Text(
-          'Cab App',
-          style: TextStyle(color: Colors.white),
-        ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+                icon: Icon(Icons.notifications, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NotificationPage()),
+                  );
+                }),
+          ),
+        ],
       ),
       body: Container(
         child: Stack(
@@ -104,29 +118,28 @@ class _HomePageState extends State<HomePage> {
               right: 15,
               left: 30,
               child: Container(
-                height: 100,
                 width: size.width,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Color(0xccFFFFFF),
-                        //borderRadius: BorderRadius.circular(16),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(1),
                       ),
+                      color: Color(0xff64FFFFFF),
+                      elevation: 2,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
-                            Icons.phone_android,
+                            Icons.my_location,
                             color: Colors.black,
                           ),
                           border:
                               OutlineInputBorder(borderRadius: BorderRadius.circular(0), borderSide: BorderSide.none),
                           hintText: "Enter pickup...",
                           hintStyle: TextStyle(color: Colors.black),
-                          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                          //contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                           isDense: true,
                         ),
                         style: TextStyle(
@@ -135,27 +148,24 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 2,
-                    ),
-                    Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Color(0xccFFFFFF),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(1),
                       ),
+                      color: Color(0xff64FFFFFF),
+                      elevation: 2,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
-                            Icons.location_city,
+                            Icons.near_me,
                             color: Colors.black,
                           ),
                           border:
                               OutlineInputBorder(borderRadius: BorderRadius.circular(0), borderSide: BorderSide.none),
                           hintText: "Enter destination...",
                           hintStyle: TextStyle(color: Colors.black),
-                          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                          //contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                           isDense: true,
                         ),
                         style: TextStyle(
@@ -194,6 +204,7 @@ class _HomePageState extends State<HomePage> {
                         e['title'],
                         textAlign: TextAlign.left,
                       ),
+                      
                     );
                   }).toList(),
                 ),
