@@ -23,7 +23,12 @@ final BoxDecoration commonBackgroundDecoration = BoxDecoration(
 final BoxDecoration commonContainerDecoration =  BoxDecoration(
           shape: BoxShape.circle,
           color: Color(0x26FFFFFF),
-        );        
+        );  
+
+final BoxDecoration commonTextFieldDecoration = BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Color(0x80FFFFFF),
+                      );
 
 Widget notificationHistoryExample({String imageAssert, String name, String subname}) {
   return Slidable(

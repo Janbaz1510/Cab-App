@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testapp/pages/homepage.dart';
+import 'package:testapp/utils/constants.dart';
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -13,7 +14,6 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     animationController = AnimationController(
       vsync: this,
@@ -29,17 +29,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: <Color>[
-              Color(0xff281483),
-              Color(0xff8F6ED5),
-              Color(0xffD782D9),
-            ],
-          ),
-        ),
+        decoration: commonBackgroundDecoration,
         child: Stack(
           fit: StackFit.expand,
           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -53,10 +43,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                 child: Container(
                   width: 162,
                   height: 162,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0x26FFFFFF),
-                  ),
+                  decoration: commonContainerDecoration,
                 ),
               ),
             ),
@@ -68,10 +55,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                 child: Container(
                   width: 105,
                   height: 105,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0x26FFFFFF),
-                  ),
+                  decoration: commonContainerDecoration,
                 ),
               ),
             ),
@@ -83,10 +67,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                 child: Container(
                   height: 199,
                   width: 199,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0x26FFFFFF),
-                  ),
+                  decoration: commonContainerDecoration,
                 ),
               ),
             ),
@@ -98,10 +79,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                 child: Container(
                   width: 105,
                   height: 105,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0x26FFFFFF),
-                  ),
+                  decoration: commonContainerDecoration,
                 ),
               ),
             ),
@@ -115,13 +93,10 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 0, top: 40, right: 0, bottom: 0),
-                       child: Container(
+                      child: Container(
                         width: 40,
                         height: 40,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0x56FFFFFF),
-                        ),
+                        decoration: commonContainerDecoration,
                         child: Icon(
                           Icons.cancel_outlined,
                           color: Colors.white,
@@ -130,28 +105,25 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 60,
+                  ),
                   Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 60),
-                      child: Image.asset('assets/images/ss.png', height: 90, width: 90),
+                    child: Image.asset('assets/images/ss.png', height: 90, width: 90),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Center(
+                    child: Text(
+                      "Registration",
+                      style: TextStyle(color: Colors.white, fontSize: 35),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 0, top: 30, right: 0, bottom: 30),
-                    child: Center(
-                      child: Text(
-                        "Registration",
-                        style: TextStyle(color: Colors.white, fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 0),
+                    padding: const EdgeInsets.only(left: 30, top: 40, right: 20, bottom: 0),
                     child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Color(0x80FFFFFF),
-                      ),
+                      decoration: commonTextFieldDecoration,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -176,10 +148,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                   Padding(
                     padding: const EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 0),
                     child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Color(0x80FFFFFF),
-                      ),
+                      decoration: commonTextFieldDecoration,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -204,12 +173,9 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                   Padding(
                     padding: const EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 50),
                     child: Container(
-                        height: 40,
+                      height: 40,
                       width: size.width,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Color(0x80FFFFFF),
-                      ),
+                      decoration: commonTextFieldDecoration,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: DropdownButton(
@@ -221,7 +187,10 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                           ),
                           hint: Text(
                             'Select Gender',
-                            style: TextStyle(color: Colors.black, fontSize: 14, ),
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                            ),
                           ),
                           items: <String>['Male', 'Female'].map((String value) {
                             return DropdownMenuItem<String>(
@@ -252,7 +221,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                       color: Colors.blueAccent,
                       splashColor: Colors.grey,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                         child: Text(
                           "Continue",
                           style: TextStyle(

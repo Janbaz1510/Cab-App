@@ -116,10 +116,7 @@ class _LoginUIState extends State<LoginUI> with TickerProviderStateMixin {
                   Padding(
                     padding: const EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 30),
                     child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Color(0x80FFFFFF),
-                      ),
+                      decoration: commonTextFieldDecoration,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(

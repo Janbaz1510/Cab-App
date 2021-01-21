@@ -127,10 +127,7 @@ class _OTPUIState extends State<OTPUI> with SingleTickerProviderStateMixin {
                   Padding(
                     padding: const EdgeInsets.only(left: 30, top: 30, right: 20, bottom: 40),
                     child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Color(0x80FFFFFF),
-                      ),
+                      decoration: commonTextFieldDecoration,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
