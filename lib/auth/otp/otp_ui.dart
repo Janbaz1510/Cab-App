@@ -5,9 +5,8 @@ import 'package:testapp/utils/constants.dart';
 
 class OTPUI extends StatefulWidget {
   final OTPInterface otpInterface;
-
-  OTPUI({this.otpInterface});
-
+  final String mobileNumber;
+  OTPUI({this.otpInterface, this.mobileNumber});
 
   @override
   _OTPUIState createState() => _OTPUIState();
@@ -16,6 +15,7 @@ class OTPUI extends StatefulWidget {
 class _OTPUIState extends State<OTPUI> with SingleTickerProviderStateMixin {
   AnimationController animationController;
   Animation<double> _animationValue;
+  bool isSendingOtp = true;
 
   @override
   void initState() {
@@ -26,6 +26,11 @@ class _OTPUIState extends State<OTPUI> with SingleTickerProviderStateMixin {
     );
     _animationValue = Tween<double>(begin: 1.1, end: 0.9).animate(animationController);
     animationController.repeat(reverse: true);
+    widget.otpInterface.initializeOtp(widget.mobileNumber).then((v) {
+      setState(() {
+        isSendingOtp = false;
+      });
+    });
   }
 
   @override
@@ -55,37 +60,37 @@ class _OTPUIState extends State<OTPUI> with SingleTickerProviderStateMixin {
             Positioned(
               top: 150,
               left: 160,
-                child: ScaleTransition(
+              child: ScaleTransition(
                 scale: _animationValue,
-              child: Container(
-                width: 105,
-                height: 105,
-                decoration: commonContainerDecoration,
-              ),
+                child: Container(
+                  width: 105,
+                  height: 105,
+                  decoration: commonContainerDecoration,
                 ),
+              ),
             ),
             Positioned(
               right: -50,
               top: -50,
-                child: ScaleTransition(
+              child: ScaleTransition(
                 scale: _animationValue,
-              child: Container(
-                height: 199,
-                width: 199,
-                decoration: commonContainerDecoration,
-              ),
+                child: Container(
+                  height: 199,
+                  width: 199,
+                  decoration: commonContainerDecoration,
                 ),
+              ),
             ),
             Positioned(
               bottom: 170,
               left: 45,
-                child: ScaleTransition(
+              child: ScaleTransition(
                 scale: _animationValue,
-              child: Container(
-                width: 105,
-                height: 105,
-                decoration: commonContainerDecoration,
-              ),
+                child: Container(
+                  width: 105,
+                  height: 105,
+                  decoration: commonContainerDecoration,
+                ),
               ),
             ),
             Container(
@@ -94,7 +99,7 @@ class _OTPUIState extends State<OTPUI> with SingleTickerProviderStateMixin {
               color: Colors.transparent,
               child: Column(
                 children: [
-                   Center(
+                  Center(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 0, top: 40, right: 0, bottom: 0),
                       child: Container(
@@ -137,7 +142,9 @@ class _OTPUIState extends State<OTPUI> with SingleTickerProviderStateMixin {
                             border:
                                 OutlineInputBorder(borderRadius: BorderRadius.circular(0), borderSide: BorderSide.none),
                             hintText: "6-digit OTP",
-                            hintStyle: TextStyle(color: Colors.black, ),
+                            hintStyle: TextStyle(
+                              color: Colors.black,
+                            ),
                             contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                             isDense: true,
                           ),
@@ -150,27 +157,36 @@ class _OTPUIState extends State<OTPUI> with SingleTickerProviderStateMixin {
                     ),
                   ),
                   Container(
-                      height:40,
+                    height: 40,
                     width: size.width,
-                    padding: const EdgeInsets.only(left: 30, right: 20,),
+                    padding: const EdgeInsets.only(
+                      left: 30,
+                      right: 20,
+                    ),
                     child: RaisedButton(
-                      onPressed: () {
-                        widget.otpInterface.loginWithOTP("otp");
-                        Navigator.pushReplacementNamed(context, registerScreen);
-                      },
+                      onPressed: isSendingOtp
+                          ? () {}
+                          : () {
+                              widget.otpInterface.loginWithOTP("otp");
+                              //Navigator.pushReplacementNamed(context, registerScreen);
+                            },
                       color: Colors.blueAccent,
                       splashColor: Colors.grey,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                        child: Text(
-                          "Verify",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                      child: isSendingOtp
+                          ? Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                              child: Text(
+                                "Verify",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                     ),
                   ),
                 ],

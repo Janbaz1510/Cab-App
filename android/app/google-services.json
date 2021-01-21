@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "592855410670",
+    "project_id": "cab-app-2fdd7",
+    "storage_bucket": "cab-app-2fdd7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592855410670:android:40d637048246093d7e50ff",
+        "android_client_info": {
+          "package_name": "com.example.testapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592855410670-6n96qh0330q1uu457poiv5k9ugrrgodi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.testapp",
+            "certificate_hash": "75ee8c2729eb8a9d098a75b312388bb8b6f2fc8c"
+          }
+        },
+        {
+          "client_id": "592855410670-qfgjh5j95qmkjnf5bglkqdfhcc07rj2h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5yFu2uyD-rr0xPD8RGlxE13kBkYRKC3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592855410670-qfgjh5j95qmkjnf5bglkqdfhcc07rj2h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

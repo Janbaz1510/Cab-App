@@ -16,6 +16,9 @@ class _LoginUIState extends State<LoginUI> with TickerProviderStateMixin {
   AnimationController animationController;
   Animation<double> _animationValue;
 
+  final TextEditingController _mobileController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -30,6 +33,7 @@ class _LoginUIState extends State<LoginUI> with TickerProviderStateMixin {
   @override
   void dispose() {
     animationController.dispose();
+    _mobileController.dispose();
     super.dispose();
   }
 
@@ -93,101 +97,119 @@ class _LoginUIState extends State<LoginUI> with TickerProviderStateMixin {
                 ),
               ),
             ),
-            Container(
-              height: size.height,
-              width: size.width,
-              color: Colors.transparent,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 130),
-                      child: Image.asset('assets/images/ss.png', height: 100, width: 100),
+            Form(
+              key: _formKey,
+              child: Container(
+                height: size.height,
+                width: size.width,
+                color: Colors.transparent,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 130),
+                        child: Image.asset('assets/images/ss.png', height: 100, width: 100),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 35, top: 30, right: 0, bottom: 30),
-                    child: Text(
-                      "Login",
-                      style: TextStyle(color: Colors.white, fontSize: 45),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 35, top: 30, right: 0, bottom: 30),
+                      child: Text(
+                        "Login",
+                        style: TextStyle(color: Colors.white, fontSize: 45),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 30),
-                    child: Container(
-                      decoration: commonTextFieldDecoration,
-                      child: TextFormField(
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.phone_android,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 30),
+                      child: Container(
+                        decoration: commonTextFieldDecoration,
+                        child: TextFormField(
+                          controller: _mobileController,
+                          keyboardType: TextInputType.number,
+                          maxLength: 10,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return "*Required";
+                            }
+                            if (value.trim().length < 10) {
+                              return "*Invalid mobile number";
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.phone_android,
+                              color: Colors.black,
+                            ),
+                            counterText: "",
+                            border:
+                                OutlineInputBorder(borderRadius: BorderRadius.circular(0), borderSide: BorderSide.none),
+                            hintText: "Mobile Number",
+                            hintStyle: TextStyle(color: Colors.black),
+                            contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                            isDense: true,
+                          ),
+                          style: TextStyle(
+                            fontSize: 14.0,
                             color: Colors.black,
                           ),
-                          border:
-                              OutlineInputBorder(borderRadius: BorderRadius.circular(0), borderSide: BorderSide.none),
-                          hintText: "Mobile Number",
-                          hintStyle: TextStyle(color: Colors.black),
-                          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                          isDense: true,
-                        ),
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.black,
                         ),
                       ),
                     ),
-                  ),
-                  Container(
+                    Container(
                       height: 40,
-                    width: size.width,
-                    padding: const EdgeInsets.only(left: 30, right: 20),
-                    child: RaisedButton(
-                      onPressed: () {
-                        widget.interface.loginWithMobile("hi");
-                        Navigator.pushReplacementNamed(context, otpScreen);
-                      },
-                      color: Colors.blueAccent,
-                      splashColor: Colors.grey,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: Text(
-                          "Generate OTP",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
+                      width: size.width,
+                      padding: const EdgeInsets.only(left: 30, right: 20),
+                      child: RaisedButton(
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            String _mobileNumber = _mobileController.text;
+                            widget.interface.loginWithMobile("+91$_mobileNumber");
+                            //Navigator.pushReplacementNamed(context, otpScreen);
+                          }
+                        },
+                        color: Colors.blueAccent,
+                        splashColor: Colors.grey,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Text(
+                            "Generate OTP",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: Container(),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "By loggin in you will agree ",
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          "Terms & Conditions",
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ],
+                    Expanded(
+                      child: Container(),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            "By loggin in you will agree ",
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            "Terms & Conditions",
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
