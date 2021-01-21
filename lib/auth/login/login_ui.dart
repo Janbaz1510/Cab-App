@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testapp/auth/login/login_interface.dart';
+import 'package:testapp/routes/routes.dart';
 import 'package:testapp/utils/constants.dart';
 
 class LoginUI extends StatefulWidget {
@@ -52,10 +53,7 @@ class _LoginUIState extends State<LoginUI> with TickerProviderStateMixin {
                 child: Container(
                   width: 162,
                   height: 162,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0x26FFFFFF),
-                  ),
+                  decoration: commonContainerDecoration,
                 ),
               ),
             ),
@@ -67,10 +65,7 @@ class _LoginUIState extends State<LoginUI> with TickerProviderStateMixin {
                 child: Container(
                   width: 105,
                   height: 105,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0x26FFFFFF),
-                  ),
+                  decoration: commonContainerDecoration,
                 ),
               ),
             ),
@@ -82,10 +77,7 @@ class _LoginUIState extends State<LoginUI> with TickerProviderStateMixin {
                 child: Container(
                   height: 199,
                   width: 199,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0x26FFFFFF),
-                  ),
+                  decoration: commonContainerDecoration,
                 ),
               ),
             ),
@@ -97,10 +89,7 @@ class _LoginUIState extends State<LoginUI> with TickerProviderStateMixin {
                 child: Container(
                   width: 105,
                   height: 105,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0x26FFFFFF),
-                  ),
+                  decoration: commonContainerDecoration,
                 ),
               ),
             ),
@@ -159,6 +148,7 @@ class _LoginUIState extends State<LoginUI> with TickerProviderStateMixin {
                     child: RaisedButton(
                       onPressed: () {
                         widget.interface.loginWithMobile("hi");
+                        Navigator.pushReplacementNamed(context, otpScreen);
                       },
                       color: Colors.blueAccent,
                       splashColor: Colors.grey,

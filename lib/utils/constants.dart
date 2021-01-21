@@ -20,6 +20,11 @@ final BoxDecoration commonBackgroundDecoration = BoxDecoration(
           ),
         );
 
+final BoxDecoration commonContainerDecoration =  BoxDecoration(
+          shape: BoxShape.circle,
+          color: Color(0x26FFFFFF),
+        );        
+
 Widget notificationHistoryExample({String imageAssert, String name, String subname}) {
   return Slidable(
     actionPane: SlidableScrollActionPane(),
