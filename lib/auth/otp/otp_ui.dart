@@ -5,13 +5,8 @@ import 'package:testapp/utils/constants.dart';
 
 class OTPUI extends StatefulWidget {
   final OTPInterface otpInterface;
-<<<<<<< HEAD
-
-  OTPUI({this.otpInterface});
-=======
   final String mobileNumber;
   OTPUI({this.otpInterface, this.mobileNumber});
->>>>>>> bd8b008a4e4ad965a24370cc53ca50e7e6b908df
 
   @override
   _OTPUIState createState() => _OTPUIState();
@@ -21,6 +16,9 @@ class _OTPUIState extends State<OTPUI> with SingleTickerProviderStateMixin {
   AnimationController animationController;
   Animation<double> _animationValue;
   bool isSendingOtp = true;
+
+  final TextEditingController _otpController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -36,6 +34,13 @@ class _OTPUIState extends State<OTPUI> with SingleTickerProviderStateMixin {
         isSendingOtp = false;
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _otpController.dispose();
+    animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -134,28 +139,43 @@ class _OTPUIState extends State<OTPUI> with SingleTickerProviderStateMixin {
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30, top: 30, right: 20, bottom: 40),
-                    child: Container(
-                      decoration: commonTextFieldDecoration,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            border:
-                                OutlineInputBorder(borderRadius: BorderRadius.circular(0), borderSide: BorderSide.none),
-                            hintText: "6-digit OTP",
-                            hintStyle: TextStyle(
+                  Form(
+                    key: _formKey,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 30, top: 30, right: 20, bottom: 40),
+                      child: Container(
+                        decoration: commonTextFieldDecoration,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _otpController,
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return '*Required';
+                              }
+                              if (value.trim().length < 6) {
+                                return '*Invalid OTP';
+                              }
+                              return null;
+                            },
+                            textAlign: TextAlign.center,
+                            keyboardType: TextInputType.number,
+                            maxLength: 6,
+                            decoration: InputDecoration(
+                              counterText: "",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(0), borderSide: BorderSide.none),
+                              hintText: "6-digit OTP",
+                              hintStyle: TextStyle(
+                                color: Colors.black,
+                              ),
+                              contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                              isDense: true,
+                            ),
+                            style: TextStyle(
+                              fontSize: 14.0,
                               color: Colors.black,
                             ),
-                            contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                            isDense: true,
-                          ),
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -172,8 +192,10 @@ class _OTPUIState extends State<OTPUI> with SingleTickerProviderStateMixin {
                       onPressed: isSendingOtp
                           ? () {}
                           : () {
-                              widget.otpInterface.loginWithOTP("otp");
-                              //Navigator.pushReplacementNamed(context, registerScreen);
+                              if (_formKey.currentState.validate()) {
+                                widget.otpInterface.loginWithOTP(_otpController.text);
+                                //Navigator.pushReplacementNamed(context, registerScreen);
+                              }
                             },
                       color: Colors.blueAccent,
                       splashColor: Colors.grey,
@@ -197,23 +219,23 @@ class _OTPUIState extends State<OTPUI> with SingleTickerProviderStateMixin {
                 ],
               ),
             ),
-            Positioned(
-              left: 30,
-              bottom: 30,
-              right: 20,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: Center(
-                  child: Text(
-                    "Resend OTP?",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.red,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            // Positioned(
+            //   left: 30,
+            //   bottom: 30,
+            //   right: 20,
+            //   child: Padding(
+            //     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            //     child: Center(
+            //       child: Text(
+            //         "Resend OTP?",
+            //         style: TextStyle(
+            //           fontSize: 14,
+            //           color: Colors.red,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
