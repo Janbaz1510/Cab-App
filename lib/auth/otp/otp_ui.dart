@@ -8,7 +8,6 @@ class OTPUI extends StatefulWidget {
 
   OTPUI({this.otpInterface});
 
-
   @override
   _OTPUIState createState() => _OTPUIState();
 }

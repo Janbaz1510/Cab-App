@@ -56,14 +56,12 @@ class _HomePageState extends State<HomePage> {
   changePage(int index) {
     setState(() {
       currentIndex = index;
-      
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       drawer: Drawer(
@@ -71,17 +69,7 @@ class _HomePageState extends State<HomePage> {
       ),
       appBar: AppBar(
         flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: <Color>[
-                Color(0xff190e45),
-                Color(0xff5339a5),
-                Color(0xff5e43ae),
-              ],
-            ),
-          ),
+          decoration: commonBackgroundDecoration,
         ),
         actions: <Widget>[
           Padding(
@@ -139,7 +127,6 @@ class _HomePageState extends State<HomePage> {
                               OutlineInputBorder(borderRadius: BorderRadius.circular(0), borderSide: BorderSide.none),
                           hintText: "Enter pickup...",
                           hintStyle: TextStyle(color: Colors.black),
-                          //contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                           isDense: true,
                         ),
                         style: TextStyle(
@@ -165,7 +152,6 @@ class _HomePageState extends State<HomePage> {
                               OutlineInputBorder(borderRadius: BorderRadius.circular(0), borderSide: BorderSide.none),
                           hintText: "Enter destination...",
                           hintStyle: TextStyle(color: Colors.black),
-                          //contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                           isDense: true,
                         ),
                         style: TextStyle(
@@ -185,7 +171,7 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                 width: size.width,
                 child: BubbleBottomBar(
-                  elevation: 8,
+                  elevation: 5,
                   opacity: 0.2,
                   backgroundColor: Colors.white,
                   borderRadius: BorderRadius.circular(25),
